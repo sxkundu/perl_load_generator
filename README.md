@@ -1,4 +1,4 @@
-# perl_load_generator
+# perl load generator fro DB2 LUW
 This perl script can take any dynamic sql, read aruguments from "multiple" files and simulate concurrent users. 
 
 "Multiple arguments" files are needed to simulate "Multiple users". 
