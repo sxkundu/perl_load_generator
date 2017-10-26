@@ -1,4 +1,4 @@
-#! /db2admin/perl/bin/perl -I/db2admin/perl/perlsub
+#! /usr/perl/bin/perl -I/db2admin/perl/perlsub
 
 =pod
 ############################################################################
