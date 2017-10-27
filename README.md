@@ -1,4 +1,9 @@
 # perl load generator for DB2 LUW
+
+2_execute_sql
+
+-------------
+
 This perl script can take any dynamic sql, read aruguments from "multiple" files and simulate concurrent users or a single user. This scipt was written since db2batch can only simulate one connection. This script can take advanatge of the DSDRIVER and WLB for purescale DB2 Systems.
 
 "Multiple arguments" files are needed to simulate "Multiple users". 
