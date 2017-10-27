@@ -36,6 +36,9 @@ make test
 
 make install (if the tests look okay)
 
+--Sample Call
+./perl_load_generator.pl -t SAMPLE -u db2inst1 -d '/home/db2user' -s 'select * from employee where empno = ?' -p SQL* -o /tmp/out -r print -c1
+
 
 Enjoy!
 
