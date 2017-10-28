@@ -20,21 +20,21 @@ You will need the following perl modules in addtion to the full db2 client.
 
 # As root install the perl modules below:
 
-cpan App::cpanminus
-cpanm Parallel::ForkManager
-cpanm DateTime
-cpanm Term::ReadKey
-cpanm DBI
-cpanm DBI
+	cpan App::cpanminus
+	cpanm Parallel::ForkManager
+	cpanm DateTime
+	cpanm Term::ReadKey
+	cpanm DBI
+	cpanm DBI
 
 Download DBD:Db2 from CPAN
 https://metacpan.org/pod/distribution/DBD-DB2/DB2.pod
 
-Export DB2_HOME under root
-perl Makefile.PL            # use a perl that's in your PATH
-make
-make test
-make install (if the tests look okay)
+	export env DB2_HOME (under root)
+	perl Makefile.PL            # use a perl that's in your PATH
+	make
+	make test
+	make install (if the tests look okay)
 
 # Sample Call
 # Clean output directory first
