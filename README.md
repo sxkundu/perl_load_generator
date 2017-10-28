@@ -41,11 +41,23 @@ make test
 
 make install (if the tests look okay)
 
---Sample Call
+# Sample Call
+# Clean output directory first
+    
+    rm /tmp/out/*
+    
+    ./2_execute_sql/perl_load_generator_v2.pl -t SAMPLE -u db2inst1 -d './sample_arguments' -s 'select * from employee where salary > ? and HIREDATE > ?' -p SQL* -o /tmp/out -r print -c2
+    
 
-./2_execute_sql/perl_load_generator_v2.pl -t SAMPLE -u db2inst1 -d './sample_arguments' -s 'select * from employee where salary > ? and HIREDATE > ?' -p SQL* -o /tmp/out -r print -c2
-
-
+# usage: perl <script.pl> <options>
+	-d <directory>	specify directory in which to find parameter files.
+	-t <target db name>	specify the target database.
+    -p Post fix  input file pattern, that contains the arguments use regular expression
+    -u User ID for the DB
+    -s Provide the SQL or SP call.
+    -c Number of child processes
+    -o Output log files
+    -r Print result set
 
 Enjoy!
 
