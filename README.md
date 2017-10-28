@@ -6,7 +6,7 @@ Generate you argument files and arguments are comma delmited. Sample argument fi
 
 # PART 2
 
-Creat the load
+Generate the load
 
 2_execute_sql
 
