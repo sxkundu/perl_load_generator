@@ -145,13 +145,8 @@ usage: perl <script.pl> <options>
 example usage:
 	
     # Clean output directory first
-    rm /db2_temp/v1/db2edt1i/db2adm1s/perl_load_test/udp3q_output/*
-    ./<script.pl> -d /db2home/db2adm1s/perl_load_test/1_generate_arguments/udp3q_getlabs_arguments_only -p 'SQL.*' -u mrj3017 -t udp3q  -s 'CALL CWS_MGP.SP_GET_LABS(?,?,?,?)'       -c 100 -o /db2_temp/v1/db2edt1i/db2adm1s/perl_load_test/udp3q_output -r print
-    
-    # Clean output directory first
-    rm /db2_temp/v1/db2edt1i/db2adm1s/perl_load_test/udp1q_output/*
-    ./<script.pl> -d /db2home/db2adm1s/perl_load_test/1_generate_arguments/udp1q_getlabs_arguments_only -p 'SQL.*' -u mrj3017 -t udp1q  -s 'CALL CWS_LW.SP_GET_LAB_RESULTS(?,?,?,?)' -c 100 -o /db2_temp/v1/db2edt1i/db2adm1s/perl_load_test/udp1q_output -r print
-    
+    rm /tmp/out/*
+    ./2_execute_sql/perl_load_generator_v2.pl -t SAMPLE -u db2inst1 -d './sample_arguments' -s 'select * from employee where salary > ? and HIREDATE > ?' -p SQL* -o /tmp/out -r print -c2
     
 USAGE
 }
