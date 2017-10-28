@@ -20,7 +20,7 @@ Therefore if you want to simulate 5 concurrent users, you will need at least 5 a
 
 You will need the following perl modules in addtion to the full db2 client.
 
-As root install the perl modules below:
+# As root install the perl modules below:
 
 cpan App::cpanminus
 
