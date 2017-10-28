@@ -43,7 +43,7 @@ make install (if the tests look okay)
 
 --Sample Call
 
-./2_execute_sql/perl_load_generator.pl -t SAMPLE -u db2inst1 -d './sample_arguments' -s 'select * from employee where salary > ? and HIREDATE > ?' -p SQL* -o /tmp/out -r print -c2
+./2_execute_sql/perl_load_generator_v2.pl -t SAMPLE -u db2inst1 -d './sample_arguments' -s 'select * from employee where salary > ? and HIREDATE > ?' -p SQL* -o /tmp/out -r print -c2
 
 
 
