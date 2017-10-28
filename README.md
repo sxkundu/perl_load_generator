@@ -1,5 +1,13 @@
 # perl load generator for DB2 LUW
 
+# PART 1 
+
+Generate you argument files and arguments are comma delmited. Sample argument files have been generated for the example below
+
+# PART 2
+
+Creat the load
+
 2_execute_sql
 
 -------------
@@ -58,6 +66,12 @@ make install (if the tests look okay)
     -c Number of child processes
     -o Output log files
     -r Print result set
+
+# PART 3
+
+Analyze the output
+
+Will upload the script shortly.
 
 Enjoy!
 
