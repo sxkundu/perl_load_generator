@@ -57,8 +57,89 @@ https://metacpan.org/pod/distribution/DBD-DB2/DB2.pod
 # PART 3
 
 Analyze the output
+	Ensure the target tables are created (Create_tables_run_1.sql)
+	./3_parse_output_logs/perl_parse_load_generator_logs_v2.pl -u db2inst1 -d  /tmp/out -r 2000 -t SAMPLE -s 'Description Testing Dynamic SQL ' -c 100 -p 'SQL.*'
 
-Will upload the script shortly.
+# Misc
+
+Sample Catalog command for SAMPLE DB in community edition
+
+db2 CATALOG TCPIP NODE DB2INST1 REMOTE 192.168.142.41 SERVER 50000 REMOTE_INSTANCE  db2inst1 SYSTEM  192.168.142.41 OSTYPE LINUX
+db2 CATALOG DATABASE SAMPLE AS SAMPLE AT NODE DB2INST1
+
+
+
+Summary table  -- DB2INST1.LOAD_TEST_PERL
+
+Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
+
+ 
+
+--Sample query to get summery of the performance stats for the run
+
+ 
+
+SELECT ID,
+AVG(ROWS_RETURNED) AS AVG_ROWS_RETURNED,
+AVG(EXEC_IN_SEC) AS AVG_EXEC_IN_SEC,
+AVG(FETCH_IN_SEC) AS AVG_FETCH_IN_SEC,
+MAX(ROWS_RETURNED) AS MAX_ROWS_RETURNED,
+MAX(EXEC_IN_SEC) AS MAX_EXEC_IN_SEC,
+MAX(FETCH_IN_SEC) AS MAX_FETCH_IN_SEC,
+SUM(ROWS_RETURNED) AS SUM_ROWS_RETURNED,
+SUM(EXEC_IN_SEC) AS SUM_EXEC_IN_SEC,
+SUM(FETCH_IN_SEC) AS SUM_FETCH_IN_SEC,
+count(*) as COMPLETED_CALLS,
+SUM(EXEC_IN_SEC)/(count(*)) AS COMPLETED_CALLS_PER_SEC_EXEC_IN_SEC,
+SUM(FETCH_IN_SEC)/(count(*)) AS COMPLETED_CALLS_PER_SEC_FETCH_IN_SEC
+FROM DB2INST1.LOAD_TEST_PERL_DETAILS
+where id in (2000)  <- subtitue the right run id
+and ROWS_RETURNED > 0
+group by  ID
+order by  ID;
+
+ 
+
+Query the table whichever way you like, it has details for every single sql call with arguments.
+select * from DB2INST1.LOAD_TEST_PERL_DETAILS where ID = 3001 and EXEC_IN_SEC > 4
+
+select count(*) from DB2INST1.LOAD_TEST_PERL_DETAILS where ID = 3003 and (EXEC_IN_SEC + FETCH_IN_SEC) < 1
+
+ 
+select (case when FETCH_IN_SEC < 1 then 'range1'
+when FETCH_IN_SEC between 1 and 2 then 'range2'
+when FETCH_IN_SEC between 2 and 3 then 'range3'
+else 'other'
+end) as range, count(*) as cnt
+from DB2INST1.LOAD_TEST_PERL_DETAILS
+where ID = 5001
+and ROWS_RETURNED > 0
+group by (case when FETCH_IN_SEC < 1 then 'range1'
+when FETCH_IN_SEC between 1 and 2 then 'range2'
+when FETCH_IN_SEC between 2 and 3 then 'range3'
+else 'other'
+end)
+order by range ;
+
+ 
+--Between 1 and 100 rows, adjust as needed
+select (case when FETCH_IN_SEC < 1 then 'range1'
+when FETCH_IN_SEC between 1 and 2 then 'range2'
+when FETCH_IN_SEC between 2 and 3 then 'range3'
+when FETCH_IN_SEC between 3 and 4 then 'range4'
+else 'other'
+end) as range, count(*) as cnt
+from DB2INST1.LOAD_TEST_PERL_DETAILS
+where ID = 725
+and ROWS_RETURNED > 0 and ROWS_RETURNED < 100
+group by (case when FETCH_IN_SEC < 1 then 'range1'
+when FETCH_IN_SEC between 1 and 2 then 'range2'
+when FETCH_IN_SEC between 2 and 3 then 'range3'
+when FETCH_IN_SEC between 3 and 4 then 'range4'
+else 'other'
+end)
+order by range;
+
 
 Enjoy!
 
