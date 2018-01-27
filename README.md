@@ -66,7 +66,9 @@ https://metacpan.org/pod/distribution/DBD-DB2/DB2.pod
 # PART 3
 
 Analyze the output
+	
 	Ensure the target tables are created (Create_tables_run_1.sql)
+	
 	./3_parse_output_logs/perl_parse_load_generator_logs_v2.pl -u db2inst1 -d  /tmp/out -r 2000 -t SAMPLE -s 'Description Testing Dynamic SQL ' -c 100 -p 'SQL.*'
 
 # Misc
