@@ -9,6 +9,7 @@ Therefore if you want to simulate 5 concurrent users, you will need at least 5 a
 # PART 1 
 
 Generate you argument files and arguments are comma delmited. Sample argument files have been generated for the example below
+Please not you will need multiple argumant files to generate the load. e.g. if you have 100 argument files, you can have a between 1 and 100(max) concurrent executions.
 
 # PART 2
 
@@ -58,7 +59,7 @@ https://metacpan.org/pod/distribution/DBD-DB2/DB2.pod
     -p Post fix  input file pattern, that contains the arguments use regular expression
     -u User ID for the DB
     -s Provide the SQL or SP call.
-    -c Number of child processes
+    -c Number of child processes  
     -o Output log files
     -r Print result set
 
