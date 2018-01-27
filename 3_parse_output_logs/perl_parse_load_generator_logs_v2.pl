@@ -119,7 +119,7 @@ else {
 
 # DDL for tables and some SQL.
 =pod
-CREATE TABLE TU01945.LOAD_TEST_PERL
+CREATE TABLE DB2INST1.LOAD_TEST_PERL
 (
     ID                 SMALLINT     NOT NULL,
     SNAPSHOT_TIMESTAMP TIMESTAMP(6) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE TU01945.LOAD_TEST_PERL
 ) COMPRESS YES ADAPTIVE
 ;
 
-CREATE TABLE TU01945.LOAD_TEST_PERL_DETAILS
+CREATE TABLE DB2INST1.LOAD_TEST_PERL_DETAILS
 (
     ID            SMALLINT      NOT NULL,
     SP_NAME       VARCHAR(500),
@@ -142,12 +142,12 @@ CREATE TABLE TU01945.LOAD_TEST_PERL_DETAILS
 
 #Prepare statement is global, because storing the parsed data into memory is to expensive, it's faster to read the entry and insert
 
-#my $sth_1 = $dbh_admin->prepare('insert into tu01945.load_test_details (ID, SP_NAME, ROWS_RETURNED , ROWS_RET_IN_SEC, SQL_TIME_IN_SEC) values (?, ?, ?, ?, ?)');
+#my $sth_1 = $dbh_admin->prepare('insert into db2inst1.load_test_details (ID, SP_NAME, ROWS_RETURNED , ROWS_RET_IN_SEC, SQL_TIME_IN_SEC) values (?, ?, ?, ?, ?)');
 #unless ($sth_1) {
 #    die "Error preparing SQL sth_1: $sth_1\n";
 #}
 
-my $sth_2 = $dbh_admin->prepare('insert into tu01945.load_test_perl (ID, SNAPSHOT_TIMESTAMP, DBNAME, DESCRIPTION) values (?, ?, ?, ?)');
+my $sth_2 = $dbh_admin->prepare('insert into db2inst1.load_test_perl (ID, SNAPSHOT_TIMESTAMP, DBNAME, DESCRIPTION) values (?, ?, ?, ?)');
 unless ($sth_2) {
     die "Error preparing SQL sth_2: $sth_2\n";
 }
@@ -192,7 +192,7 @@ sub main {
 
         if ( $value eq 'ERROR SQL0803N/ST23505' ) {
             print "\nDelete the existing run id from both tables\n";
-            print "delete FROM TU01945.LOAD_TEST_PERL where id = $id; delete FROM TU01945.LOAD_TEST_PERL_DETAILS where id = $id;\n";
+            print "delete FROM DB2INST1.LOAD_TEST_PERL where id = $id; delete FROM DB2INST1.LOAD_TEST_PERL_DETAILS where id = $id;\n";
         }
         exit;
     }
@@ -356,7 +356,7 @@ sub process_file {
         print ".";
     }
 
-    my $sth_3 = $dbh_admin_sub->prepare('insert into tu01945.load_test_perl_details (ID, SP_NAME, ROWS_RETURNED , EXEC_IN_SEC, FETCH_IN_SEC) values (?, ?, ?, ?, ?)');
+    my $sth_3 = $dbh_admin_sub->prepare('insert into db2inst1.load_test_perl_details (ID, SP_NAME, ROWS_RETURNED , EXEC_IN_SEC, FETCH_IN_SEC) values (?, ?, ?, ?, ?)');
     unless ($sth_3) {
         die "Error preparing SQL sth_3: $sth_3\n";
     }

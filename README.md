@@ -18,6 +18,9 @@ Generate the load
 
 You will need the following perl modules in addtion to the full db2 client.
 
+# 
+# During installing the full db2 client, ensure you select "Custom" and select the development libaries
+
 # As root install the perl modules below:
 
 	cpan App::cpanminus
@@ -26,7 +29,7 @@ You will need the following perl modules in addtion to the full db2 client.
 	cpanm Term::ReadKey
 	cpanm DBI
 	cpanm DBI
-
+	
 Download DBD:Db2 from CPAN
 https://metacpan.org/pod/distribution/DBD-DB2/DB2.pod
 
