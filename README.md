@@ -18,7 +18,12 @@ Generate the load
 
 You will need the following perl modules in addtion to the full db2 client.
 
-# 
+# If using Ubuntu, prior to installing the full db2 client, install the following as root
+
+	apt-get install libpam0g:i386  	--https://askubuntu.com/questions/428072/64-bit-db2-10-5-missing-32-bit-libpam-and-64-bit-libaio-on-ubuntu-12-04 
+	apt-get install libstdc++6		--https://askubuntu.com/questions/409821/libstdc-so-6-cannot-open-shared-object-file-no-such-file-or-directory
+
+	
 # During installing the full db2 client, ensure you select "Custom" and select the development libaries
 
 # As root install the perl modules below:
