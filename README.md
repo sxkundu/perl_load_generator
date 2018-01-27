@@ -148,7 +148,7 @@ Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
 	end)
 	order by range;
 
-# Other SQL queries to monitor SQL performance in  DB2.
+# Other SQL queries to monitor SQL performance in  DB2 10.5 and higher.
 
 	SELECT
 	"SECTION_TYPE" AS SECTION_TYPE,
@@ -183,7 +183,21 @@ Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
     WHERE STMT_TEXT LIKE '%PRDISTRIB%' ORDER BY NUM_EXECUTIONS desc    
 	
 	
--- For db2 9.7
+
+
+	
+	SELECT ROUTINE_TYPE, ROUTINE_SCHEMA, ROUTINE_NAME, SPECIFIC_NAME, TOTAL_CPU_TIME , TOTAL_TIMES_ROUTINE_INVOKED, MEMBER, ROWS_READ, ROWS_RETURNED, ROWS_READ/ROWS_RETURNED as ratio   
+	FROM TABLE(MON_GET_ROUTINE('P', 'CWS_MGP', NULL, NULL, -2)) 
+	AS T ORDER BY ROUTINE_NAME, MEMBER DESC
+   
+   
+--Get details of each execution iD (Breakdown where the waits are coming from)
+   
+   SELECT * FROM TABLE(MON_GET_PKG_CACHE_STMT(NULL, x'<execid>', NULL, -2)) AS T
+
+   
+# Other SQL queries to monitor SQL performance in  DB2 9.7 and higher.
+	
 	SELECT
 	"SECTION_TYPE" AS SECTION_TYPE,
 	"EXECUTABLE_ID" AS EXECUTABLE_ID,
@@ -210,15 +224,7 @@ Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
 	FETCH FIRST 100 ROWS ONLY
 	with ur;
 
-
-	
-	SELECT ROUTINE_TYPE, ROUTINE_SCHEMA, ROUTINE_NAME, SPECIFIC_NAME, TOTAL_CPU_TIME , TOTAL_TIMES_ROUTINE_INVOKED, MEMBER, ROWS_READ, ROWS_RETURNED, ROWS_READ/ROWS_RETURNED as ratio   FROM TABLE(MON_GET_ROUTINE('P', 'CWS_MGP', NULL, NULL, -2)) 
-	AS T ORDER BY ROUTINE_NAME, MEMBER DESC
    
-   
---Get details of each execution iD (Breakdown where the waits are coming from)
-   SELECT * FROM TABLE(MON_GET_PKG_CACHE_STMT(NULL, x'<execid>', NULL, -2)) AS T
-
 	
 
 # Enjoy!
