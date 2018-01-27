@@ -132,6 +132,7 @@ Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
 
  
 --Between 1 and 100 rows, adjust as needed
+
 	select (case when FETCH_IN_SEC < 1 then 'range1'
 	when FETCH_IN_SEC between 1 and 2 then 'range2'
 	when FETCH_IN_SEC between 2 and 3 then 'range3'
@@ -150,6 +151,6 @@ Detail table -- DB2INST1.LOAD_TEST_PERL_DETAILS
 	order by range;
 
 
-#Enjoy!
+# Enjoy!
 
 
