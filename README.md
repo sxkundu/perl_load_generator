@@ -11,6 +11,9 @@ Therefore if you want to simulate 5 concurrent users, you will need at least 5 a
 Generate you argument files and arguments are comma delmited. Sample argument files have been generated for the example below
 Please not you will need multiple argumant files to generate the load. e.g. if you have 100 argument files, you can have a between 1 and 100(max) concurrent executions.
 
+If all you arguments are in one file use the "split" command to split it into multiple files.
+https://www.computerhope.com/unix/usplit.htm
+
 # PART 2
 
 Generate the load
